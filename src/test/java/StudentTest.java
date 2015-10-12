@@ -9,8 +9,8 @@ public class StudentTest {
     @Test
     public void should_be_able_to_create_student() {
         Student student = new Student("Frank", "Smith");
-        assertThat(student.getFirstName(), is("Frank"));
-        assertThat(student.getLastName(), is("Smith"));
+        assertThat(student.firstName(), is("Frank"));
+        assertThat(student.lastName(), is("Smith"));
     }
 
 }
