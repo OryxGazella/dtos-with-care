@@ -11,8 +11,10 @@ public class Student {
         this.lastName = lastName;
     }
 
+    public static Student invalidStudent = new Student("Invalid", "Invalid");
+
     public static Student create(String firstName, String lastName) {
-        if (firstName == null) throw new IllegalArgumentException("Null firstName");
+        if (firstName == null) return invalidStudent;
         return new Student(firstName, lastName);
     }
 
