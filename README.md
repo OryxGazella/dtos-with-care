@@ -3,5 +3,5 @@
 Steps:
 
 ``` bash
-$ git checkout -f 01-plain-old-java-object
+git checkout -f 01-plain-old-java-object
 ```
