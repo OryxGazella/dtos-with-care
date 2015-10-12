@@ -6,6 +6,7 @@ import java.util.Collection;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsSame.sameInstance;
 
@@ -28,9 +29,12 @@ public class StudentTest {
     public void should_identify_invalid_data() {
         Collection<Student> students = simulateBadDataFromApi().stream()
                 .filter(s -> s != Student.invalidStudent)
-                .collect(Collectors.toList());
+                .collect(Collectors.toSet());
 
-        assertThat(students.size(), is(3));
+        assertThat(students.size(), is(2));
+        assertThat(students, containsInAnyOrder(
+                Student.create("Fabio", null),
+                Student.create("Frank", "Smith")));
     }
 
     private Collection<Student> simulateBadDataFromApi() {
