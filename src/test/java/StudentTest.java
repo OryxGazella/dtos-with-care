@@ -15,20 +15,20 @@ public class StudentTest {
     @Test
     public void should_be_able_to_create_student() {
         Student student = Student.create("Frank", "Smith");
-        assertThat(student.firstName(), is("Frank"));
-        assertThat(student.lastName(), is("Smith"));
+        assertThat(student.getFirstName(), is("Frank"));
+        assertThat(student.getLastName(), is("Smith"));
     }
 
     @Test
     public void should_not_allow_us_to_create_a_student_with_a_null_name() {
         Student studentWithoutName = Student.create(null, "Dracula");
-        assertThat(studentWithoutName, sameInstance(Student.invalidStudent));
+        assertThat(studentWithoutName, sameInstance(Student.getInvalidStudent()));
     }
 
     @Test
     public void should_identify_invalid_data() {
         Collection<Student> students = simulateBadDataFromApi().stream()
-                .filter(s -> s != Student.invalidStudent)
+                .filter(s -> s != Student.getInvalidStudent())
                 .collect(Collectors.toSet());
 
         assertThat(students.size(), is(2));
