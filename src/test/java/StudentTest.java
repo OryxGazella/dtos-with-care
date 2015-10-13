@@ -14,14 +14,14 @@ public class StudentTest {
 
     @Test
     public void should_be_able_to_create_student() {
-        Student student = Student.create("Frank", "Smith");
-        assertThat(student.firstName(), is("Frank"));
-        assertThat(student.lastName(), is("Smith"));
+        Student student = Student.Companion.create("Frank", "Smith");
+        assertThat(student.getFirstName(), is("Frank"));
+        assertThat(student.getLastName(), is("Smith"));
     }
 
     @Test
     public void should_not_allow_us_to_create_a_student_with_a_null_name() {
-        Student studentWithoutName = Student.create(null, "Dracula");
+        Student studentWithoutName = Student.Companion.create(null, "Dracula");
         assertThat(studentWithoutName, sameInstance(Student.invalidStudent));
     }
 
@@ -33,16 +33,16 @@ public class StudentTest {
 
         assertThat(students.size(), is(2));
         assertThat(students, containsInAnyOrder(
-                Student.create("Fabio", null),
-                Student.create("Frank", "Smith")));
+                Student.Companion.create("Fabio", null),
+                Student.Companion.create("Frank", "Smith")));
     }
 
     private Collection<Student> simulateBadDataFromApi() {
         return Arrays.asList(
-                Student.create("Fabio", null),
-                Student.create(null, null),
-                Student.create("Frank", "Smith"),
-                Student.create("Fabio", null),
-                Student.create(null, "Dracula"));
+                Student.Companion.create("Fabio", null),
+                Student.Companion.create(null, null),
+                Student.Companion.create("Frank", "Smith"),
+                Student.Companion.create("Fabio", null),
+                Student.Companion.create(null, "Dracula"));
     }
 }
