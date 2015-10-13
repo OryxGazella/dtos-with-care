@@ -2,26 +2,28 @@ package soy.frank.dtos;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.google.auto.value.AutoValue;
+import org.immutables.value.Value;
 
-@AutoValue
-public abstract class Student {
+@Value.Immutable
+public interface Student {
+    String firstName();
 
-    Student() {
-    }
-
-    public static Student invalidStudent = new AutoValue_Student("Invalid", "Invalid");
+    @Nullable
+    String lastName();
 
     @JsonCreator
-    public static Student create(
+    static Student create(
             @JsonProperty("firstName") String firstName,
             @JsonProperty("lastName") String lastName) {
         if (firstName == null) return invalidStudent;
-        return new AutoValue_Student(firstName, lastName);
+        return ImmutableStudent.builder()
+                .firstName(firstName)
+                .lastName(lastName)
+                .build();
     }
 
-    public abstract String firstName();
-
-    @Nullable
-    public abstract String lastName();
+    Student invalidStudent = ImmutableStudent
+            .builder()
+            .firstName("Invalid")
+            .build();
 }
