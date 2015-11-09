@@ -1,0 +1,47 @@
+buildscript {
+    ext.kotlin_version = '1.0.0-beta-1103'
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+    }
+}
+apply plugin: 'java'
+apply plugin: 'kotlin'
+
+group = 'blog-frank-soy'
+version = '1.0-SNAPSHOT'
+
+description = """DTOs with care source"""
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+
+sourceSets {
+    main {
+        kotlin {
+            srcDir "src/main/kotlin"
+        }
+        java {
+            srcDir "src/main/java"
+        }
+    }
+    test {
+        java {
+            srcDir "src/test/java"
+        }
+    }
+}
+
+dependencies {
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version:'2.5.0'
+    testCompile group: 'junit', name: 'junit', version:'4.12'
+    testCompile group: 'org.hamcrest', name: 'hamcrest-all', version:'1.3'
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+}
